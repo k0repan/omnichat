@@ -1,0 +1,210 @@
+{
+  "children": [
+    {
+      "id": "start",
+      "text": "Вы клиент Телесети?",
+      "keyboard": [
+        {
+          "label": "Да",
+          "action": "func",
+          "arg": "register"
+        },
+        {
+          "label": "Нет",
+          "action": "func",
+          "arg": "main_menu"
+        }
+      ]
+    },
+    {
+      "id": "not_sub_menu",
+      "text": "Меню",
+      "keyboard": [
+        {
+          "label": "Услуги",
+          "action": "menu",
+          "arg": "/plans"
+        }
+      ]
+    },
+    {
+      "id": "sub_menu",
+      "text": "Меню",
+      "keyboard": [
+        {
+          "label": "Услуги",
+          "action": "menu",
+          "arg": "/plans"
+        },
+        {
+          "label": "Личный кабинет",
+          "action": "menu",
+          "arg": "/personal"
+        },
+        {
+          "label": "Возникла проблема",
+          "action": "menu",
+          "arg": "/help"
+        }
+      ]
+    },
+    {
+      "id": "plans",
+      "text": "Услуги",
+      "keyboard": [
+        {
+          "label": "Интернет",
+          "action": "func",
+          "arg": "print_internet_plan"
+        },
+        {
+          "label": "ТВ",
+          "action": "func",
+          "arg": "print_tv_plan"
+        },
+        {
+          "label": "Интернет+ТВ",
+          "action": "func",
+          "arg": "print_bundle_plan"
+        },
+        {
+          "label": "Обратно",
+          "action": "func",
+          "arg": "main_menu"
+        }
+      ],
+      "children": [
+        {
+          "id": "internet",
+          "text": "Интернет",
+          "keyboard": [
+            {
+              "label": "Для частного сектора",
+              "action": "menu",
+              "arg": "./for_private"
+            },
+            {
+              "label": "Для многоквартирных домов",
+              "action": "menu",
+              "arg": "./for_flat"
+            },
+            {
+              "label": "Для бизнеса",
+              "action": "menu",
+              "arg": "./for_business"
+            },
+            {
+              "label": "Обратно",
+              "action": "menu",
+              "arg": "../"
+            }
+          ],
+          "children": [
+            {
+              "id": "for_private",
+              "text": "Для частного сектора",
+              "keyboard": [
+                {
+                  "label": "Обратно",
+                  "action": "menu",
+                  "arg": "../"
+                }
+              ]
+            },
+            {
+              "id": "for_flat",
+              "text": "Для многоквартирных домов",
+              "keyboard": [
+                {
+                  "label": "Обратно",
+                  "action": "menu",
+                  "arg": "../"
+                }
+              ]
+            },
+            {
+              "id": "for_business",
+              "text": "Для бизнеса",
+              "keyboard": [
+                {
+                  "label": "Обратно",
+                  "action": "menu",
+                  "arg": "../"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "text": "Личный кабинет",
+      "keyboard": [
+        {
+          "label": "Подключенные услуги",
+          "action": "func",
+          "arg": "print_user_plans"
+        },
+        {
+          "label": "Информация о клиенте",
+          "action": "func",
+          "arg": "print_user_info"
+        },
+        {
+          "label": "Баланс",
+          "action": "func",
+          "arg": "print_user_balance"
+        },
+        {
+          "label": "Обратно",
+          "action": "menu",
+          "arg": "/sub_menu"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "help",
+      "text": "Техподдержка",
+      "keyboard": [
+        {
+          "label": "Проблемы с интернетом",
+          "action": "menu",
+          "arg": "./internet_problem"
+        },
+        {
+          "label": "Обратно",
+          "action": "menu",
+          "arg": "/sub_menu"
+        }
+      ],
+      "children": [
+        {
+          "id": "internet_problem",
+          "text": "Проблемы с интернетом",
+          "keyboard": [
+            {
+              "label": "Медленная скорость",
+              "action": "menu",
+              "arg": "./slow_internet"
+            },{
+              "label": "Прерывистое соединение",
+              "action": "menu",
+              "arg": "./intermittent_internet"
+            },{
+              "label": "Отсутствие соединения",
+              "action": "menu",
+              "arg": "./no_internet"
+            },
+            {
+              "label": "Обратно",
+              "action": "menu",
+              "arg": "../"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

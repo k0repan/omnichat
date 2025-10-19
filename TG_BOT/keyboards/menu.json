@@ -1,0 +1,32 @@
+{
+    "children": [
+        {
+            "id": "main_menu",
+            "text": "Приветствую! Чем я могу помочь?",
+            "keyboard": [
+                {
+                    "label": "Услуги",
+                    "action": "menu",
+                    "arg": "/plans"
+                },
+                {
+                    "label": "Личный кабинет",
+                    "action": "menu",
+                    "arg": "/personal"
+                },
+                {
+                    "label": "Возникла проблема",
+                    "action": "menu",
+                    "arg": "/help"
+                }
+            ]
+        },
+        {
+            "id": "plans",
+            "text": "Доступные услуги",
+            "keyboard": [
+                
+            ]
+        }
+    ]
+}
