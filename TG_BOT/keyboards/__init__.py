@@ -1,9 +1,10 @@
 import json
-from aiogram.types import InlineKeyboardButton, Message
+from aiogram.types import InlineKeyboardButton, Message, CallbackQuery
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from create_bot import bot
 
 
-async def open_menu(msg: Message, path: str):
+def construct_keyboard(path: str):
     with open("keyboards/menu.json", encoding="UTF-8") as file:
         menu = json.load(file)
 
@@ -17,18 +18,21 @@ async def open_menu(msg: Message, path: str):
     keyboard = InlineKeyboardBuilder()
     for item in menu["keyboard"]:
         keyboard.row()
-        if item["action"] == "menu":
-            if item["arg"].startswith("/"):
-                key_path = item["arg"][1:]
-            elif item["arg"].startswith("../"):
-                key_path = "/".join(path.split("/")[:-1] + [item["args"][3:]])
-            keyboard.add(InlineKeyboardButton(text=item["label"], callback_data=key_path))
-        
-        elif item["action"] == "func":
-            keyboard.add(InlineKeyboardButton(text=item["label"], callback_data=item["arg"]))
+        keyboard.add(InlineKeyboardButton(text=item["label"], callback_data=item["arg"]))
 
+    return text, keyboard.adjust(1)
+
+
+async def open_menu_msg(msg: Message, path: str):
+    text, keyboard = construct_keyboard(path)
     await msg.answer(text=text, reply_markup=keyboard.as_markup())
 
 
+async def open_menu_call(call: CallbackQuery, path: str):
+    text, keyboard = construct_keyboard(path)
+    await call.message.edit_text(text=text, reply_markup=keyboard.as_markup())
+    await call.answer()
+
+
 async def main_menu(msg: Message):
-    await open_menu(msg, "main_menu")
+    await open_menu_msg(msg, "main_menu")

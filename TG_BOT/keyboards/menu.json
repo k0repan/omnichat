@@ -2,30 +2,211 @@
     "children": [
         {
             "id": "main_menu",
-            "text": "Приветствую! Чем я могу помочь?",
+            "text": "👋 Добро пожаловать в техническую поддержку! Чем я могу помочь?",
             "keyboard": [
                 {
-                    "label": "Услуги",
+                    "label": "🛠️ Сообщить о проблеме",
                     "action": "menu",
-                    "arg": "/plans"
+                    "arg": "/report_problem"
                 },
                 {
-                    "label": "Личный кабинет",
+                    "label": "📊 Статус услуг",
+                    "action": "menu",
+                    "arg": "/services_status"
+                },
+                {
+                    "label": "💳 Личный кабинет",
                     "action": "menu",
                     "arg": "/personal"
                 },
                 {
-                    "label": "Возникла проблема",
-                    "action": "menu",
-                    "arg": "/help"
+                    "label": "📞 Связаться с оператором",
+                    "action": "func",
+                    "arg": "connect_operator"
                 }
             ]
         },
         {
-            "id": "plans",
-            "text": "Доступные услуги",
+            "id": "report_problem",
+            "text": "📝 Выберите тип проблемы:",
             "keyboard": [
-                
+                {
+                    "label": "🌐 Проблемы с интернетом",
+                    "action": "menu",
+                    "arg": "/internet_issues"
+                },
+                {
+                    "label": "📺 Проблемы с ТВ",
+                    "action": "menu", 
+                    "arg": "/tv_issues"
+                },
+                {
+                    "label": "🔌 Проблемы с оборудованием",
+                    "action": "menu",
+                    "arg": "/equipment_issues"
+                },
+                {
+                    "label": "⚡ Другая проблема",
+                    "action": "func",
+                    "arg": "custom_problem"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu",
+                    "arg": "/main_menu"
+                }
+            ]
+        },
+        {
+            "id": "internet_issues",
+            "text": "🌐 Какая проблема с интернетом?",
+            "keyboard": [
+                {
+                    "label": "❌ Нет интернета",
+                    "action": "func",
+                    "arg": "report_no_internet"
+                },
+                {
+                    "label": "🐌 Медленная скорость",
+                    "action": "func",
+                    "arg": "report_slow_speed"
+                },
+                {
+                    "label": "📶 Плохой Wi-Fi сигнал",
+                    "action": "func", 
+                    "arg": "report_wifi_issue"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu",
+                    "arg": "/report_problem"
+                }
+            ]
+        },
+        {
+            "id": "tv_issues",
+            "text": "📺 Какая проблема с телевидением?",
+            "keyboard": [
+                {
+                    "label": "❌ Нет сигнала",
+                    "action": "func",
+                    "arg": "report_no_tv_signal"
+                },
+                {
+                    "label": "📺 Не работают каналы",
+                    "action": "func",
+                    "arg": "report_channels_issue"
+                },
+                {
+                    "label": "🎬 Проблемы с приставкой",
+                    "action": "func",
+                    "arg": "report_settop_box_issue"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu",
+                    "arg": "/report_problem"
+                }
+            ]
+        },
+        {
+            "id": "equipment_issues", 
+            "text": "🔌 Какая проблема с оборудованием?",
+            "keyboard": [
+                {
+                    "label": "🔧 Вызвать техника",
+                    "action": "func",
+                    "arg": "request_technician"
+                },
+                {
+                    "label": "💰 Аренда/замена оборудования",
+                    "action": "menu",
+                    "arg": "/equipment_rental"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu", 
+                    "arg": "/internet_issues"
+                }
+            ]
+        },
+
+        {
+            "id": "services_status",
+            "text": "📊 Статус ваших услуг:",
+            "keyboard": [
+                {
+                    "label": "🌐 Проверить интернет",
+                    "action": "func",
+                    "arg": "check_internet_status"
+                },
+                {
+                    "label": "📺 Статус ТВ",
+                    "action": "func",
+                    "arg": "check_tv_status"
+                },
+                {
+                    "label": "💡 Проверить счета",
+                    "action": "func",
+                    "arg": "check_bills"
+                },
+                {
+                    "label": "📈 История обращений",
+                    "action": "func",
+                    "arg": "get_ticket_history"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu",
+                    "arg": "/main_menu"
+                }
+            ]
+        },
+        {
+            "id": "personal",
+            "text": "💳 Личный кабинет:",
+            "keyboard": [
+                {
+                    "label": "👤 Мои данные",
+                    "action": "func",
+                    "arg": "get_user_profile"
+                },
+                {
+                    "label": "📋 Мои услуги",
+                    "action": "func",
+                    "arg": "get_user_services"
+                },
+                {
+                    "label": "💸 Баланс и платежи",
+                    "action": "func",
+                    "arg": "get_balance"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu",
+                    "arg": "/main_menu"
+                }
+            ]
+        },
+        {
+            "id": "equipment_rental",
+            "text": "💰 Аренда оборудования:",
+            "keyboard": [
+                {
+                    "label": "🔄 Обновить роутер",
+                    "action": "func",
+                    "arg": "upgrade_router"
+                },
+                {
+                    "label": "📺 Аренда ТВ-приставки",
+                    "action": "func",
+                    "arg": "rent_settop_box"
+                },
+                {
+                    "label": "🔙 Назад",
+                    "action": "menu",
+                    "arg": "/report_problem"
+                }
             ]
         }
     ]
