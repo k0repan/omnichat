@@ -4,7 +4,7 @@ import os
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from models import *
-from DATABASE.db_class import db
+from DATABASE.db_class_sql import db
 from DATABASE.queue_service import queue_service
 
 

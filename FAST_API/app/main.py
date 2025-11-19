@@ -4,7 +4,7 @@ from fastapi import HTTPException, BackgroundTasks
 from datetime import datetime
 from models import *
 from create_app import app
-from DATABASE.db_class import db
+from DATABASE.db_class_sql import db
 from DATABASE.queue_service import queue_service
 
 
