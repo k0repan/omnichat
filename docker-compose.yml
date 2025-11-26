@@ -1,11 +1,39 @@
-version: '3.9'
+
 services:
   postgres:
     image: postgres:latest
+    container_name: omnichat-postgres
+    restart: always
     environment:
-      POSTGRES_DB: omnichat-1.0
-      POSTGRES_USER: admin
+      POSTGRES_DB: omnichat
+      POSTGRES_USER: user
       POSTGRES_PASSWORD: admin
     ports:
-      - "5432:5432"
+      - 5232:5432
     
+  adminer:
+    image: adminer:latest
+    container_name: omnichat-adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  api:
+    build:
+      context: ./FAST_API
+      dockerfile: Dockerfile
+    container_name: omnichat-api
+    ports:
+      - 8000:8000
+    environment:
+      - DATABASE_URL=postgresql://user:admin@localhost:5232/omnichat
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+
+  bot_tg:
+    build:
+      context: ./TG_BOT
+      dockerfile: Dockerfile
+    container_name: omnichat-bot-tg
+    environment:
+      - API_BASE_URL=http://api:8000/api/v1
+      - BOT_TOKEN=${TOKEN}

@@ -2,10 +2,13 @@ import sys
 sys.path.insert(0, "..")
 from fastapi import HTTPException, BackgroundTasks
 from datetime import datetime
-from models import *
-from create_app import app
-from DATABASE.db_class_sql import db
-from DATABASE.queue_service import queue_service
+from fastapi import FastAPI
+from .models import *
+# from DATABASE.db_class_sql import db
+# from DATABASE.queue_service import queue_service
+
+
+app = FastAPI(title="Omnichat Support API")
 
 
 @app.post("/api/users/register")
